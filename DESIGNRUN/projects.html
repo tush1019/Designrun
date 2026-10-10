@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects â€” DESIGNRUN</title>
+  <meta name="description" content="DESIGNRUN project gallery â€” search, filter, add, edit and review structural engineering project cards.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="projects">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Projects</h1>
+          <p class="page-sub">Browse, search and manage project cards. Changes are saved in this browser only (LocalStorage).</p>
+        </div>
+        <div class="page-head-actions">
+          <span class="badge badge-neutral">Project gallery</span>
+          <button type="button" class="btn btn-primary" id="add-project-btn"><i data-icon="plus" data-size="16"></i> Add Project</button>
+        </div>
+      </section>
+
+      <div class="notice-box notice-info" style="margin-bottom:18px;">
+        <i data-icon="info" data-size="17"></i>
+        <p>Project entries are saved on this device â€” there is no central database, so clearing browser storage removes them. Use <strong>Reset site data</strong> in the profile menu to restore the original content.</p>
+      </div>
+
+      <!-- Filters -->
+      <section class="card toolbar" aria-label="Project filters">
+        <div class="form-group grow">
+          <label for="filter-search">Search by name or location</label>
+          <input type="search" id="filter-search" placeholder="e.g. residential, bridgeâ€¦" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="filter-category">Category</label>
+          <select id="filter-category"><option value="">All categories</option></select>
+        </div>
+        <div class="form-group">
+          <label for="filter-status">Status</label>
+          <select id="filter-status"><option value="">All statuses</option></select>
+        </div>
+        <div class="form-group">
+          <label for="sort-date">Sort</label>
+          <select id="sort-date">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+            <option value="name">Name Aâ€“Z</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-ghost" id="clear-filters">Clear filters</button>
+      </section>
+
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <div class="projects-grid" id="projects-grid"></div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/projects.js?v=v2"></script>
+</body>
+</html>

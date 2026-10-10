@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports â€” DESIGNRUN</title>
+  <meta name="description" content="DESIGNRUN report register â€” search and review reports with print-friendly layout and optional PDF export.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="reports">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <div class="print-header">
+        <h1>DESIGNRUN â€” Reports</h1>
+        <p>Printed from the DESIGNRUN report register.</p>
+      </div>
+
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Reports</h1>
+          <p class="page-sub">Search, review and print the report register.</p>
+        </div>
+        <div class="page-head-actions no-print">
+          <button type="button" class="btn btn-outline" id="print-btn"><i data-icon="printer" data-size="16"></i> Print</button>
+          <button type="button" class="btn btn-primary" id="pdf-btn"><i data-icon="file-down" data-size="16"></i> Export PDF</button>
+        </div>
+      </section>
+
+      <div class="notice-box notice-danger" style="margin-bottom:18px;">
+        <i data-icon="alert" data-size="17"></i>
+        <p><strong>Please note.</strong> Register entries document project deliverables and internal records. Formal engineering approvals, safety certificates and verified results are issued only by qualified professionals after review against the applicable codes.</p>
+      </div>
+
+      <section class="card toolbar no-print" aria-label="Report filters">
+        <div class="form-group grow">
+          <label for="rep-search">Search reports</label>
+          <input type="search" id="rep-search" placeholder="Title, project or notesâ€¦" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="rep-project">Project</label>
+          <select id="rep-project"><option value="">All projects</option></select>
+        </div>
+        <div class="form-group">
+          <label for="rep-type">Report type</label>
+          <select id="rep-type"><option value="">All types</option></select>
+        </div>
+        <button type="button" class="btn btn-ghost" id="rep-clear">Clear</button>
+      </section>
+
+      <p class="result-count" id="rep-count" aria-live="polite"></p>
+
+      <section class="card table-wrap">
+        <table class="data-table" id="reports-table">
+          <caption class="sr-only" style="position:absolute;left:-9999px;">Report register</caption>
+          <thead>
+            <tr>
+              <th scope="col">Report</th>
+              <th scope="col">Project</th>
+              <th scope="col">Type</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reports-body"></tbody>
+        </table>
+      </section>
+      <div id="reports-empty"></div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/reports.js?v=v2"></script>
+</body>
+</html>

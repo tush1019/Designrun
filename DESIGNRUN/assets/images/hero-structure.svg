@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Structural building illustration">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1B2E"/>
+      <stop offset="1" stop-color="#16324F"/>
+    </linearGradient>
+    <pattern id="hgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#FFFFFF" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#hbg)"/>
+  <rect width="1200" height="630" fill="url(#hgrid)"/>
+  <circle cx="980" cy="120" r="60" fill="#1680F8" opacity="0.18"/>
+  <g fill="none" stroke="#1680F8" stroke-width="4" stroke-linejoin="round">
+    <rect x="420" y="150" width="300" height="380" fill="#0E2440"/>
+    <path d="M420 220h300M420 290h300M420 360h300M420 430h300"/>
+    <rect x="760" y="250" width="180" height="280" fill="#0E2440"/>
+    <path d="M760 320h180M760 390h180M760 460h180"/>
+  </g>
+  <g fill="#1680F8" opacity="0.55">
+    <rect x="446" y="172" width="34" height="26"/><rect x="500" y="172" width="34" height="26"/><rect x="554" y="172" width="34" height="26"/><rect x="608" y="172" width="34" height="26"/>
+    <rect x="446" y="242" width="34" height="26"/><rect x="500" y="242" width="34" height="26"/><rect x="554" y="242" width="34" height="26"/><rect x="608" y="242" width="34" height="26"/>
+    <rect x="446" y="312" width="34" height="26"/><rect x="500" y="312" width="34" height="26"/><rect x="554" y="312" width="34" height="26"/><rect x="608" y="312" width="34" height="26"/>
+    <rect x="446" y="382" width="34" height="26"/><rect x="500" y="382" width="34" height="26"/><rect x="554" y="382" width="34" height="26"/><rect x="608" y="382" width="34" height="26"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.75" fill="none">
+    <path d="M180 530V180h210"/>
+    <path d="M180 220h60M180 260h44"/>
+    <path d="M330 180l-40 70"/>
+    <path d="M348 180v92"/>
+  </g>
+  <circle cx="348" cy="284" r="9" fill="#1680F8"/>
+  <rect y="530" width="1200" height="6" fill="#1680F8" opacity="0.6"/>
+</svg>

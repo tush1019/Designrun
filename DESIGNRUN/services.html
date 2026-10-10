@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services â€” DESIGNRUN</title>
+  <meta name="description" content="DESIGNRUN engineering services: structural design & detailing, wind load analysis (CFD), RCC & steel design, 3D modelling & BIM, and technical consultancy.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="services">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Engineering Services</h1>
+          <p class="page-sub">Better Designs. Stronger Structures. A Safer Tomorrow.</p>
+        </div>
+        <div class="page-head-actions">
+          <a class="btn btn-outline" href="analysis.html">Design &amp; Analysis intake</a>
+          <a class="btn btn-primary" href="#consultation">Request Consultation</a>
+        </div>
+      </section>
+
+      <section class="strip-hero">
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&amp;fit=crop&amp;w=1600&amp;q=80"
+               data-fallback="hero" alt="Construction site with structural framework">
+        </div>
+        <div class="hero-overlay"></div>
+        <div style="position:relative;z-index:2;">
+          <span class="hero-kicker">CIVIL &amp; STRUCTURE SOLUTION</span>
+          <h2>From Concept to Completion â€” We Build with Precision.</h2>
+          <p>Structural design, analysis, simulation and detailing support delivered with clear documentation. Final outputs must always be reviewed by qualified professionals against the applicable codes.</p>
+          <div class="hero-tags"><span>Safe</span><span>Efficient</span><span>Sustainable</span></div>
+        </div>
+      </section>
+
+      <div class="services-grid" id="services-grid"></div>
+
+
+      <!-- Consultation request -->
+      <div class="section-head" id="consultation">
+        <div><h2>Request a Consultation</h2><p>Tell us about your project and we will structure a scope of work.</p></div>
+      </div>
+      <div class="split-grid">
+        <section class="card card-pad">
+          <form id="consultation-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group" id="grp-c-name">
+                <label for="c-name">Full name <span class="req">*</span></label>
+                <input id="c-name" type="text" maxlength="80" autocomplete="name">
+                <span class="field-error" id="err-c-name"></span>
+              </div>
+              <div class="form-group" id="grp-c-email">
+                <label for="c-email">Email <span class="req">*</span></label>
+                <input id="c-email" type="email" maxlength="120" autocomplete="email">
+                <span class="field-error" id="err-c-email"></span>
+              </div>
+              <div class="form-group" id="grp-c-service">
+                <label for="c-service">Service needed <span class="req">*</span></label>
+                <select id="c-service"><option value="">Select a service</option></select>
+                <span class="field-error" id="err-c-service"></span>
+              </div>
+              <div class="form-group" id="grp-c-phone">
+                <label for="c-phone">Phone (optional)</label>
+                <input id="c-phone" type="tel" maxlength="25" autocomplete="tel">
+                <span class="field-error" id="err-c-phone"></span>
+              </div>
+              <div class="form-group form-span-2" id="grp-c-message">
+                <label for="c-message">Project notes <span class="req">*</span></label>
+                <textarea id="c-message" maxlength="600" placeholder="Structure type, location, stage of design, timelinesâ€¦"></textarea>
+                <span class="field-error" id="err-c-message"></span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"><i data-icon="send" data-size="16"></i> Submit Request</button>
+              <a class="btn btn-ghost" href="contact.html">Use the Contact page instead</a>
+            </div>
+            <div class="notice-box notice-warn" style="margin-top:14px;">
+              <i data-icon="alert" data-size="16"></i>
+              <p>This form validates your input and stores the request on this device. It does not send email â€” delivery requires a backend or form service (see README), or contact us directly from the Contact page.</p>
+            </div>
+          </form>
+        </section>
+
+        <aside class="card panel">
+          <h3 class="panel-title"><i data-icon="check-circle" data-size="18"></i> What happens next</h3>
+          <ol class="steps">
+            <li>We review your structure type, location and design stage.</li>
+            <li>We prepare a clear scope with deliverables and assumptions.</li>
+            <li>You receive a quotation for your approval before any work starts.</li>
+            <li>Design outputs are checked by a qualified professional.</li>
+          </ol>
+          <div class="notice-box notice-info" style="margin-top:16px;">
+            <i data-icon="info" data-size="16"></i>
+            <p>Prefer talking first? Call the office number listed on the <a href="contact.html">Contact page</a>.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/services.js?v=v2"></script>
+</body>
+</html>

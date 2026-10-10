@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Generic project placeholder">
+  <defs>
+    <linearGradient id="gbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1B2E"/>
+      <stop offset="1" stop-color="#15304F"/>
+    </linearGradient>
+    <pattern id="ggrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#FFFFFF" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="560" fill="url(#gbg)"/>
+  <rect width="800" height="560" fill="url(#ggrid)"/>
+  <g fill="none" stroke="#1680F8" stroke-width="4" stroke-linejoin="round">
+    <path d="M280 420V180l120-60 120 60v240z" fill="#0E2440"/>
+    <path d="M280 180h240M280 260h240M280 340h240"/>
+    <circle cx="400" cy="120" r="10" fill="#1680F8"/>
+  </g>
+  <rect y="500" width="800" height="6" fill="#1680F8" opacity="0.6"/>
+  <text x="40" y="542" fill="#FFFFFF" opacity="0.5" font-family="Segoe UI, Arial, sans-serif" font-size="20" letter-spacing="4">DESIGNRUN</text>
+</svg>

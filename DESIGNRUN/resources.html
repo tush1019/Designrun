@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources â€” DESIGNRUN</title>
+  <meta name="description" content="DESIGNRUN resource library â€” engineering articles, project documentation, brochure downloads and useful reference links.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="resources">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Resources</h1>
+          <p class="page-sub">Articles, documentation, brochure and reference links for your project team.</p>
+        </div>
+        <div class="page-head-actions">
+          <span class="badge badge-demo">Articles are general education, not project advice</span>
+        </div>
+      </section>
+
+      <section class="card toolbar" aria-label="Resource filters">
+        <div class="form-group grow">
+          <label for="res-search">Search resources</label>
+          <input type="search" id="res-search" placeholder="e.g. wind, BIM, brochureâ€¦" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="res-kind">Type</label>
+          <select id="res-kind">
+            <option value="">All types</option>
+            <option>Article</option>
+            <option>Document</option>
+            <option>Link</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="res-category">Category</label>
+          <select id="res-category"><option value="">All categories</option></select>
+        </div>
+        <button type="button" class="btn btn-ghost" id="res-clear">Clear</button>
+      </section>
+
+      <p class="result-count" id="res-count" aria-live="polite"></p>
+      <div class="resource-grid" id="resource-grid"></div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/resources.js?v=v2"></script>
+</body>
+</html>

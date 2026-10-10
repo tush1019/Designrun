@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In â€” DESIGNRUN</title>
+  <meta name="description" content="Log in to your DESIGNRUN workspace â€” projects, enquiries and resources from one premium dashboard.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="login" data-title="Log In">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <div class="auth-wrap">
+        <aside class="auth-side" aria-label="About DESIGNRUN accounts">
+          <span class="auth-badge"><i data-icon="crown" data-size="14"></i> Premium workspace</span>
+          <h2>Welcome back to <span>DESIGNRUN</span></h2>
+          <p>Civil &amp; Structure Solution â€” manage projects, enquiries and your workspace from one premium dashboard.</p>
+          <ul class="auth-points">
+            <li><i data-icon="check-circle" data-size="17"></i> Track projects, reports and consultation requests in one place.</li>
+            <li><i data-icon="key" data-size="17"></i> Secure 6-digit OTP verification during sign-up.</li>
+            <li><i data-icon="shield" data-size="17"></i> The first registered account becomes the administrator.</li>
+          </ul>
+        </aside>
+
+        <div class="auth-form-col">
+          <div class="auth-card">
+            <span class="auth-badge"><i data-icon="login" data-size="14"></i> Secure sign in</span>
+            <h1>Log in to DESIGNRUN</h1>
+            <p class="muted">Use your account email + password. New here? <a href="signup.html">Create an account</a>.</p>
+            <form id="login-form" novalidate>
+              <div class="form-group" id="grp-l-email">
+                <label for="l-email">Email <span class="req">*</span></label>
+                <input id="l-email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com">
+                <span class="field-error" id="err-l-email"></span>
+              </div>
+              <div class="form-group" id="grp-l-pass">
+                <label for="l-pass">Password <span class="req">*</span></label>
+                <input id="l-pass" type="password" maxlength="100" autocomplete="current-password" placeholder="Your password">
+                <span class="field-error" id="err-l-pass"></span>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-block"><i data-icon="login" data-size="16"></i> Log In</button>
+              </div>
+            </form>
+            <div class="notice-box notice-info" style="margin-top:14px;">
+              <i data-icon="info" data-size="16"></i>
+              <p><strong>Local accounts:</strong> accounts are stored on this device. For access across devices, connect a backend authentication service such as Firebase Auth or Supabase Auth.</p>
+            </div>
+            <p class="small muted" style="margin-top:12px;">No account yet? <a href="signup.html">Sign up with OTP verification</a> Â· <a href="index.html">Back to Dashboard</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/auth.js?v=v2"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us â€” DESIGNRUN</title>
+  <meta name="description" content="Contact DESIGNRUN â€” Civil & Structure Solution. Office details and an online enquiry form.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Contact Us</h1>
+          <p class="page-sub">From Concept to Completion â€” We Build with Precision.</p>
+        </div>
+        <div class="page-head-actions">
+          <button type="button" class="btn btn-outline" id="edit-info-btn"><i data-icon="pencil" data-size="15"></i> Edit business details</button>
+        </div>
+      </section>
+
+      <div class="contact-grid">
+        <!-- Enquiry form -->
+        <section class="card card-pad">
+          <div class="section-head" style="margin-top:0;">
+            <div><h2>Send an Enquiry</h2><p>All fields marked * are required.</p></div>
+          </div>
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group" id="grp-f-name">
+                <label for="f-name">Full name <span class="req">*</span></label>
+                <input id="f-name" type="text" maxlength="80" autocomplete="name">
+                <span class="field-error" id="err-f-name"></span>
+              </div>
+              <div class="form-group" id="grp-f-email">
+                <label for="f-email">Email <span class="req">*</span></label>
+                <input id="f-email" type="email" maxlength="120" autocomplete="email">
+                <span class="field-error" id="err-f-email"></span>
+              </div>
+              <div class="form-group" id="grp-f-phone">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" type="tel" maxlength="25" autocomplete="tel">
+                <span class="field-error" id="err-f-phone"></span>
+              </div>
+              <div class="form-group" id="grp-f-company">
+                <label for="f-company">Company (optional)</label>
+                <input id="f-company" type="text" maxlength="90" autocomplete="organization">
+                <span class="field-error" id="err-f-company"></span>
+              </div>
+              <div class="form-group form-span-2" id="grp-f-subject">
+                <label for="f-subject">Subject <span class="req">*</span></label>
+                <input id="f-subject" type="text" maxlength="120" placeholder="e.g. Quote Request â€” G+5 Residential">
+                <span class="field-error" id="err-f-subject"></span>
+              </div>
+              <div class="form-group form-span-2" id="grp-f-message">
+                <label for="f-message">Message <span class="req">*</span></label>
+                <textarea id="f-message" maxlength="1000" placeholder="Tell us about your structure, location and what you needâ€¦"></textarea>
+                <span class="field-error" id="err-f-message"></span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"><i data-icon="send" data-size="16"></i> Submit Enquiry</button>
+              <button type="reset" class="btn btn-ghost">Clear</button>
+            </div>
+          </form>
+
+          <div class="notice-box notice-warn" style="margin-top:16px;">
+            <i data-icon="alert" data-size="17"></i>
+            <p><strong>How delivery works:</strong> this form validates your input and stores your enquiry on the DESIGNRUN server, where it appears in the admin inbox immediately. You can also reach us directly at ritikchaudhary126@gmail.com or call +91 80069 03841.</p>
+          </div>
+
+          <div id="contact-result" aria-live="polite"></div>
+        </section>
+
+        <!-- Business information -->
+        <aside class="dash-side">
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="briefcase" data-size="18"></i> DESIGNRUN Office</h3>
+            <ul class="info-list" id="contact-info-list"></ul>
+          </section>
+
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="folder" data-size="18"></i> Explore the website</h3>
+            <ul class="quick-links">
+              <li><a class="quick-link" href="projects.html"><i data-icon="folder" data-size="17"></i><span>Projects</span></a></li>
+              <li><a class="quick-link" href="services.html"><i data-icon="hardhat" data-size="17"></i><span>Services</span></a></li>
+              <li><a class="quick-link" href="analysis.html"><i data-icon="chart" data-size="17"></i><span>Design &amp; Analysis</span></a></li>
+              <li><a class="quick-link" href="reports.html"><i data-icon="file-text" data-size="17"></i><span>Reports</span></a></li>
+              <li><a class="quick-link" href="team.html"><i data-icon="users" data-size="17"></i><span>Team</span></a></li>
+              <li><a class="quick-link" href="resources.html"><i data-icon="book" data-size="17"></i><span>Resources</span></a></li>
+            </ul>
+          </section>
+
+          <section class="quote-panel">
+            <span class="icon-chip icon-chip-navy icon-chip-lg"><i data-icon="message" data-size="24"></i></span>
+            <blockquote>Letâ€™s build something strong together.</blockquote>
+            <p>Share your drawings, site details and timelines â€” we will come back with a clear scope and next steps.</p>
+            <a class="btn btn-light btn-block" href="analysis.html">Submit Design Requirements</a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/contact.js?v=v2"></script>
+</body>
+</html>
+

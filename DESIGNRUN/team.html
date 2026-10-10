@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team â€” DESIGNRUN</title>
+  <meta name="description" content="Meet the DESIGNRUN team. Profiles below are configurable placeholders until real team details are provided.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="team">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Our Team</h1>
+          <p class="page-sub">Better Designs. Stronger Structures. A Safer Tomorrow.</p>
+        </div>
+        <div class="page-head-actions">
+          <button type="button" class="btn btn-primary" id="add-member-btn"><i data-icon="plus" data-size="16"></i> Add Team Member</button>
+        </div>
+      </section>
+
+      <div class="notice-box notice-warn" style="margin-bottom:20px;">
+        <i data-icon="alert" data-size="17"></i>
+        <p><strong>Placeholder profiles.</strong> The people below are configurable placeholders for layout purposes. No real employee identities, degrees, licences or professional qualifications are represented. Replace them with actual team details (with each person's permission) using the Add / Edit buttons â€” entries are stored in this browser only.</p>
+      </div>
+
+      <div class="team-grid" id="team-grid"></div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/team.js?v=v2"></script>
+</body>
+</html>

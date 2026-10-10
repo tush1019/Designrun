@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard â€” DESIGNRUN | Civil &amp; Structure Solution</title>
+  <meta name="description" content="DESIGNRUN â€” Civil &amp; Structure Solution. Structural design, analysis, CFD wind studies, BIM modelling and consultancy. From Concept to Completion â€” We Build with Precision.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <!-- Page head -->
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Welcome back to DESIGNRUN</h1>
+          <p class="page-sub">From Concept to Completion â€” We Build with Precision.</p>
+        </div>
+        <div class="page-head-actions">
+          <span class="badge badge-success">DESIGNRUN Â· Civil &amp; Structure Solution</span>
+          <a class="btn btn-primary" href="analysis.html"><i data-icon="plus" data-size="16"></i> New Project Request</a>
+        </div>
+      </section>
+
+      <!-- Hero banner -->
+      <section class="hero" aria-label="DESIGNRUN introduction">
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&amp;fit=crop&amp;w=1600&amp;q=80"
+               data-fallback="hero" alt="Modern structural building and construction site">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-brand">
+              <svg width="42" height="42" viewBox="0 0 64 64" aria-hidden="true">
+                <rect width="64" height="64" rx="14" fill="#1680F8"/>
+                <path d="M18 46V18h11c9.5 0 16 5.8 16 14s-6.5 14-16 14z" fill="none" stroke="#0B1B2E" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M18 32h21" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <strong>DESIGNRUN</strong>
+            </div>
+            <span class="hero-kicker">CIVIL &amp; STRUCTURE SOLUTION</span>
+            <h2>From Concept to Completion.<br><span>We Build with Precision.</span></h2>
+            <p class="hero-line"><i data-icon="ruler" data-size="18"></i> Structural Design &amp; Analysis</p>
+            <p class="hero-line"><i data-icon="zap" data-size="18"></i> Simulation &amp; Optimization</p>
+            <div class="hero-tags"><span>Safe</span><span>Efficient</span><span>Sustainable</span></div>
+          </div>
+          <aside class="hero-promo">
+            <h3>Your Vision, Our Structural Expertise</h3>
+            <p>Get professional structural design, analysis and consultancy for your next project.</p>
+            <a class="btn btn-primary btn-block" href="contact.html?subject=Quote%20Request">Get a Quote</a>
+            <a class="btn btn-outline btn-block" href="services.html">Explore Services</a>
+            <p class="promo-note">Call <a href="tel:+918006903841">+91 80069 03841</a> or send an enquiry â€” we reply personally.</p>
+          </aside>
+        </div>
+      </section>
+
+
+      <!-- Dashboard grid -->
+      <div class="dash-grid">
+        <div class="dash-main">
+          <!-- Statistics -->
+          <div class="section-head">
+            <div><h2>Company Snapshot</h2><p>Our track record at a glance â€” update anytime from the Admin Panel.</p></div>
+          </div>
+          <div class="stats-grid" id="stats-grid" aria-live="polite"></div>
+
+          <!-- Recent projects -->
+          <div class="section-head">
+            <div><h2>Recent Projects</h2><p>Selected work by DESIGNRUN â€” manage the full list on the Projects page.</p></div>
+            <a class="btn btn-outline btn-sm" href="projects.html">View All <i data-icon="arrow-right" data-size="15"></i></a>
+          </div>
+          <div class="projects-grid" id="recent-projects"></div>
+
+          <!-- Services -->
+          <div class="section-head">
+            <div><h2>Our Services</h2><p>Engineering services tailored to your structure type.</p></div>
+            <a class="btn btn-outline btn-sm" href="services.html">All Services <i data-icon="arrow-right" data-size="15"></i></a>
+          </div>
+          <div class="services-grid" id="services-grid"></div>
+        </div>
+
+        <!-- Right side panels -->
+        <aside class="dash-side" aria-label="Quick tools and information">
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="zap" data-size="18"></i> Quick Links</h3>
+            <ul class="quick-links">
+              <li>
+                <button type="button" class="quick-link" id="upload-files-btn">
+                  <i data-icon="upload" data-size="18"></i>
+                  <span>Upload Project Files<small>Choose drawings / documents</small></span>
+                </button>
+                <input type="file" id="upload-files-input" multiple hidden aria-label="Select project files to review">
+              </li>
+              <li><a class="quick-link" href="contact.html?subject=Consultation%20Request"><i data-icon="message" data-size="18"></i><span>Request Consultation<small>Talk to our engineering team</small></span></a></li>
+              <li id="brochure-link-item"></li>
+              <li><a class="quick-link" href="contact.html"><i data-icon="mail" data-size="18"></i><span>Contact Us<small>Office details &amp; enquiry form</small></span></a></li>
+            </ul>
+            <ul class="file-list" id="selected-files" aria-live="polite"></ul>
+            <div class="notice-box notice-info" style="margin-top:12px;">
+              <i data-icon="info" data-size="16"></i>
+              <p><strong>Note:</strong> choosing a file here only selects it inside your browser. Files are <em>not</em> uploaded to a server â€” real uploads need a backend.</p>
+            </div>
+          </section>
+
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="target" data-size="18"></i> Our Expertise</h3>
+            <div class="expertise-grid">
+              <a class="expertise-item" href="services.html#svc-1"><i data-icon="ruler" data-size="20"></i> Structural Design</a>
+              <a class="expertise-item" href="services.html#svc-3"><i data-icon="layers" data-size="20"></i> RCC &amp; Steel</a>
+              <a class="expertise-item" href="services.html#svc-2"><i data-icon="wind" data-size="20"></i> CFD Wind Studies</a>
+              <a class="expertise-item" href="analysis.html"><i data-icon="zap" data-size="20"></i> Seismic Review</a>
+              <a class="expertise-item" href="services.html#svc-4"><i data-icon="blueprint" data-size="20"></i> BIM &amp; Revit</a>
+              <a class="expertise-item" href="services.html#svc-1"><i data-icon="building" data-size="20"></i> PEB Structures</a>
+              <a class="expertise-item" href="services.html#svc-5"><i data-icon="shield" data-size="20"></i> Design Review</a>
+              <a class="expertise-item" href="services.html"><i data-icon="briefcase" data-size="20"></i> Consultancy</a>
+            </div>
+          </section>
+
+          <section class="quote-panel">
+            <span class="icon-chip icon-chip-navy icon-chip-lg"><i data-icon="quote" data-size="24"></i></span>
+            <blockquote>â€œBetter Designs. Stronger Structures. A Safer Tomorrow.â€</blockquote>
+            <p>Share your drawings and requirements â€” we will structure a clear scope of work for your review.</p>
+            <a class="btn btn-light btn-block" href="contact.html?subject=Project%20Discussion">Talk to Us <i data-icon="arrow-right" data-size="15"></i></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/dashboard.js?v=v2"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DESIGNRUN — Company Brochure</title>
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --navy:#0B1B2E; --blue:#1680F8; --text:#1E2A3B; --muted:#64748B; --border:#E2E8F0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', Inter, Arial, sans-serif; color:var(--text); background:#EEF3F9; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; background:#fff; }
+  header { background:linear-gradient(135deg,#0B1B2E,#123A63); color:#fff; padding:56px 48px; }
+  .brand { display:flex; align-items:center; gap:14px; font-size:30px; font-weight:800; letter-spacing:1px; }
+  .brand svg { width:46px; height:46px; }
+  .sub { color:#8FC0FF; letter-spacing:4px; font-size:13px; margin-top:10px; }
+  h1 { font-size:34px; margin-top:26px; line-height:1.25; }
+  h1 span { color:#59A6FF; }
+  section { padding:36px 48px; border-bottom:1px solid var(--border); }
+  h2 { font-size:20px; color:var(--navy); margin-bottom:14px; }
+  p { color:var(--muted); margin-bottom:10px; }
+  ul { margin:0 0 10px 20px; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .card { border:1px solid var(--border); border-radius:12px; padding:18px; }
+  .card strong { display:block; color:var(--navy); margin-bottom:6px; }
+  .tag { display:inline-block; background:#E8F2FF; color:#0F63C4; border-radius:999px; padding:3px 12px; font-size:12px; font-weight:600; margin:0 6px 6px 0; }
+  .notice { background:#FFF7E6; border:1px solid #F5D68A; color:#8A6116; border-radius:10px; padding:14px 18px; font-size:13px; }
+  footer { background:var(--navy); color:#B9C6D6; padding:28px 48px; font-size:13px; }
+  footer strong { color:#fff; }
+  .toolbar { text-align:center; padding:18px; background:#0B1B2E; color:#fff; font-size:13px; }
+  .toolbar button { background:var(--blue); border:0; color:#fff; padding:8px 18px; border-radius:8px; font-size:13px; cursor:pointer; margin-left:10px; }
+  @media print { .toolbar { display:none; } body { background:#fff; } }
+  @media (max-width:640px) { .grid{grid-template-columns:1fr;} header,section,footer{padding-left:22px;padding-right:22px;} }
+</style>
+</head>
+<body>
+<div class="toolbar">DESIGNRUN company brochure — print or save as PDF via your browser.<button onclick="window.print()">Print / Save as PDF</button></div>
+<div class="page">
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1680F8"/><path d="M18 46V18h11c9.5 0 16 5.8 16 14s-6.5 14-16 14z" fill="none" stroke="#0B1B2E" stroke-width="5"/><path d="M18 32h21" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      DESIGNRUN
+    </div>
+    <div class="sub">CIVIL &amp; STRUCTURE SOLUTION</div>
+    <h1>From Concept to Completion —<br><span>We Build with Precision.</span></h1>
+    <p style="color:#C9D8E8;margin-top:16px;">Better Designs. Stronger Structures. A Safer Tomorrow.</p>
+  </header>
+
+  <section>
+    <h2>About DESIGNRUN</h2>
+    <p><strong>DESIGNRUN — Civil &amp; Structure Solution</strong> provides structural design, analysis and consultancy for residential, commercial and industrial projects — from concept to completion, built with precision.</p>
+    <p class="notice">All engineering deliverables are prepared and reviewed by qualified professionals against the applicable design codes.</p>
+  </section>
+
+  <section>
+    <h2>Engineering Services</h2>
+    <div class="grid">
+      <div class="card"><strong>Structural Design &amp; Detailing</strong> RCC and steel frame design, foundation schemes, member sizing and construction-ready detailing drawings.</div>
+      <div class="card"><strong>Wind Load Analysis (CFD)</strong> Wind environment studies, cladding pressure guidance and comfort checks using validated CFD workflows.</div>
+      <div class="card"><strong>RCC &amp; Steel Design (RCDC)</strong> Design coordination and output review using industry-standard design tools and applicable codes.</div>
+      <div class="card"><strong>3D Modeling &amp; BIM (Revit)</strong> Coordinated 3D models, drawings and material quantity take-offs for better site execution.</div>
+      <div class="card"><strong>Consultancy &amp; Technical Support</strong> Design reviews, value engineering inputs, third-party checks and site technical support.</div>
+      <div class="card"><strong>Project Intake &amp; Requirements</strong> Structured requirement gathering through the DESIGNRUN Design &amp; Analysis page.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Project Types We Support</h2>
+    <span class="tag">Residential buildings</span><span class="tag">Commercial towers</span><span class="tag">Industrial sheds &amp; PEB</span>
+    <span class="tag">Bridges &amp; culverts</span><span class="tag">Institutional buildings</span><span class="tag">Warehouse structures</span>
+  </section>
+
+  <section>
+    <h2>How We Work</h2>
+    <ul>
+      <li>Understand the architectural intent, site conditions and applicable design codes.</li>
+      <li>Prepare structural schemes, analysis models and design basis notes.</li>
+      <li>Coordinate with architects, MEP consultants and contractors.</li>
+      <li>Issue drawings and calculations for review by qualified professionals.</li>
+      <li>Support construction through clarifications and site queries.</li>
+    </ul>
+    <p>Final design outputs must always be verified by a qualified engineer against the relevant local codes before construction.</p>
+  </section>
+
+  <footer>
+    <strong>DESIGNRUN — CIVIL &amp; STRUCTURE SOLUTION</strong><br>
+    Contact details: edit the Contact page or <code>js/storage.js</code> (DR.DEFAULTS.contactInfo).<br>
+    From Concept to Completion — We Build with Precision.
+  </footer>
+</div>
+</body>
+</html>

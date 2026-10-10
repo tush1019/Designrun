@@ -1,0 +1,101 @@
+/* ==========================================================================
+   DESIGNRUN — responsive.css
+   Desktop → laptop → tablet → mobile. Loaded after style.css.
+   ========================================================================== */
+
+/* --------- Large laptop / small desktop (≤ 1400px) --------- */
+@media (max-width: 1400px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* --------- Laptop (≤ 1200px): stack the dashboard side panels --------- */
+@media (max-width: 1200px) {
+  .dash-grid { grid-template-columns: minmax(0, 1fr); }
+  .dash-side { flex-direction: row; flex-wrap: wrap; }
+  .dash-side > * { flex: 1 1 300px; }
+  .split-grid { grid-template-columns: minmax(0, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-content { grid-template-columns: minmax(0, 1fr) minmax(260px, .85fr); padding: 28px; }
+}
+
+/* --------- Tablet (≤ 992px): off-canvas sidebar, compact grid --------- */
+@media (max-width: 992px) {
+  .content-wrap { margin-left: 0; }
+  .topbar-burger { display: inline-flex; }
+  .sidebar { transform: translateX(-100%); box-shadow: none; }
+  .sidebar.is-open { transform: none; box-shadow: var(--shadow-lg); }
+  .sidebar-close { display: inline-flex; }
+  .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .main-content { padding: 22px 20px 10px; }
+  .topbar { padding: 10px 20px; }
+  .site-footer { margin-left: 0; }
+}
+
+/* --------- Small tablet / large phone (≤ 768px) --------- */
+@media (max-width: 768px) {
+  .hero-content { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; }
+  .hero { min-height: 0; }
+  .hero-promo { margin-top: 6px; }
+  .hero h2 { font-size: 25px; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .services-grid { grid-template-columns: minmax(0, 1fr); }
+  .resource-grid { grid-template-columns: minmax(0, 1fr); }
+  .detail-grid { grid-template-columns: minmax(0, 1fr); gap: 2px 0; }
+  .detail-grid dt { margin-top: 8px; }
+  .page-head { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .strip-hero { padding: 24px 20px; }
+  .dash-side { flex-direction: column; }
+  .modal-overlay { padding: 3vh 12px 12px; }
+}
+
+/* --------- Mobile (≤ 560px) --------- */
+@media (max-width: 560px) {
+  .main-content { padding: 16px 14px 8px; }
+  .topbar { padding: 9px 14px; gap: 8px; flex-wrap: wrap; }
+  .topbar-right { gap: 7px; }
+  .search-box { width: 100%; max-width: none; order: 3; flex-basis: 100%; }
+  .avatar-btn-name { display: none; }
+  .avatar-btn { padding: 4px; border-radius: 50%; }
+  .avatar-btn .icon-svg { display: none; }
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+  .projects-grid { grid-template-columns: minmax(0, 1fr); }
+  .team-grid { grid-template-columns: minmax(0, 1fr); }
+  .expertise-grid { grid-template-columns: 1fr; }
+  .check-grid { grid-template-columns: minmax(0, 1fr); }
+  .page-title { font-size: 21px; }
+  .section-head { flex-direction: column; align-items: flex-start; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar .form-group, .toolbar input, .toolbar select { width: 100%; }
+  .toolbar-spacer { display: none; }
+  .form-actions .btn { width: 100%; }
+  .modal-foot .btn { flex: 1 1 auto; }
+  .site-footer { padding: 26px 18px 14px; border-radius: 16px 16px 0 0; }
+  .dropdown-notif { width: min(330px, 88vw); }
+  .dropdown-menu { width: min(250px, 86vw); }
+  .toast-root { left: 14px; right: 14px; bottom: 14px; max-width: none; }
+}
+
+/* --------- Auth + Admin responsive --------- */
+@media (max-width: 992px) {
+  .auth-wrap { grid-template-columns: minmax(0, 1fr); }
+  .auth-side { padding: 30px 24px; }
+  .auth-form-col { padding: 28px 22px; }
+  .admin-grid { grid-template-columns: minmax(0, 1fr); }
+  .admin-tabs { position: static; flex-direction: row; flex-wrap: wrap; }
+  .admin-tab { flex: 1 1 150px; }
+  .admin-kpi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .admin-kpi { grid-template-columns: minmax(0, 1fr); }
+  .otp-inputs input { width: 40px; height: 48px; font-size: 19px; }
+  .user-row { flex-wrap: wrap; }
+}

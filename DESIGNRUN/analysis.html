@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design &amp; Analysis â€” DESIGNRUN</title>
+  <meta name="description" content="Project intake and engineering requirements form for structural design, RCC, steel, wind, seismic and BIM scopes. Requirements management tool â€” not an analysis engine.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="analysis">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+
+    <main id="main-content" class="main-content">
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Design &amp; Analysis</h1>
+          <p class="page-sub">Project intake and engineering requirements â€” organised in one place.</p>
+        </div>
+        <div class="page-head-actions">
+          <span class="badge badge-demo">Requirements tool Â· not an analysis engine</span>
+        </div>
+      </section>
+
+      <div class="notice-box notice-danger" style="margin-bottom:20px;">
+        <i data-icon="alert" data-size="18"></i>
+        <p><strong>Important:</strong> this page is a project information and requirements management tool. It does <strong>not</strong> perform structural analysis. No load calculations, safety factors, structural certifications or engineering approvals are produced here. Real engineering results require validated engineering software, the applicable design codes and qualified professional review.</p>
+      </div>
+
+      <div class="split-grid">
+        <!-- Intake form -->
+        <section class="card card-pad">
+          <div class="section-head" style="margin-top:0;">
+            <div><h2>Project Requirements Form</h2><p>Fields marked with * are required.</p></div>
+          </div>
+          <form id="analysis-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group form-span-2" id="grp-a-name">
+                <label for="a-name">Project name <span class="req">*</span></label>
+                <input id="a-name" type="text" maxlength="100" placeholder="e.g. Riverside Apartments Phase 1">
+                <span class="field-error" id="err-a-name"></span>
+              </div>
+              <div class="form-group" id="grp-a-type">
+                <label for="a-type">Building / structure type <span class="req">*</span></label>
+                <select id="a-type">
+                  <option value="">Select a type</option>
+                  <option>Residential building</option>
+                  <option>Commercial building</option>
+                  <option>Industrial shed / PEB</option>
+                  <option>Institutional building</option>
+                  <option>Warehouse</option>
+                  <option>Bridge / culvert</option>
+                  <option>Other</option>
+                </select>
+                <span class="field-error" id="err-a-type"></span>
+              </div>
+              <div class="form-group" id="grp-a-floors">
+                <label for="a-floors">Number of floors <span class="req">*</span></label>
+                <input id="a-floors" type="number" min="0" max="200" step="1" placeholder="e.g. 6">
+                <span class="field-error" id="err-a-floors"></span>
+              </div>
+              <div class="form-group" id="grp-a-location">
+                <label for="a-location">Location <span class="req">*</span></label>
+                <input id="a-location" type="text" maxlength="100" placeholder="City, State / Country">
+                <span class="field-error" id="err-a-location"></span>
+              </div>
+              <div class="form-group" id="grp-a-dims">
+                <label for="a-dims">Approximate dimensions</label>
+                <input id="a-dims" type="text" maxlength="140" placeholder="e.g. 40 m Ã— 22 m footprint, 3 m floor height">
+                <span class="field-error" id="err-a-dims"></span>
+              </div>
+              <div class="form-group" id="grp-a-material">
+                <label for="a-material">Material type <span class="req">*</span></label>
+                <select id="a-material">
+                  <option value="">Select a material system</option>
+                  <option>RCC frame</option>
+                  <option>Structural steel</option>
+                  <option>Composite (steel + concrete)</option>
+                  <option>Load-bearing masonry</option>
+                  <option>Not decided yet</option>
+                </select>
+                <span class="field-error" id="err-a-material"></span>
+              </div>
+              <div class="form-group form-span-2" id="grp-a-notes">
+                <label for="a-notes">Additional project notes</label>
+                <textarea id="a-notes" maxlength="800" placeholder="Architectural intent, site conditions, stage of design, special requirementsâ€¦"></textarea>
+                <span class="field-error" id="err-a-notes"></span>
+              </div>
+            </div>
+
+
+            <h3 style="font-size:14.5px;margin:20px 0 10px;">Analysis &amp; design requirements <span class="req">*</span></h3>
+            <div class="check-grid" id="req-grid">
+              <label class="check-item"><input type="checkbox" value="Structural Design"> Structural Design</label>
+              <label class="check-item"><input type="checkbox" value="RCC Design"> RCC Design</label>
+              <label class="check-item"><input type="checkbox" value="Steel Design"> Steel Design</label>
+              <label class="check-item"><input type="checkbox" value="Wind Load Analysis"> Wind Load Analysis</label>
+              <label class="check-item"><input type="checkbox" value="Seismic Analysis"> Seismic Analysis</label>
+              <label class="check-item"><input type="checkbox" value="3D Modeling"> 3D Modeling</label>
+              <label class="check-item"><input type="checkbox" value="Technical Consultation"> Technical Consultation</label>
+            </div>
+            <span class="field-error" id="err-a-req"></span>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"><i data-icon="check-circle" data-size="16"></i> Submit Requirements</button>
+              <button type="reset" class="btn btn-ghost" id="analysis-reset">Clear form</button>
+            </div>
+          </form>
+
+          <div id="summary-area" aria-live="polite"></div>
+        </section>
+
+        <!-- Side information -->
+        <aside class="dash-side">
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="filter" data-size="18"></i> How this page works</h3>
+            <ol class="steps">
+              <li>Fill in your structure details and select the required scopes.</li>
+              <li>Submit to generate a tidy requirement summary you can share.</li>
+              <li>The summary is saved in this browser for reference.</li>
+              <li>Actual analysis is carried out later with validated software and professional review.</li>
+            </ol>
+          </section>
+
+          <section class="card panel">
+            <h3 class="panel-title"><i data-icon="folder" data-size="18"></i> Recent requests (this browser)</h3>
+            <ul class="summary-list" id="saved-requests"></ul>
+          </section>
+
+          <section class="quote-panel">
+            <span class="icon-chip icon-chip-navy icon-chip-lg"><i data-icon="shield" data-size="24"></i></span>
+            <blockquote>Safety first â€” always.</blockquote>
+            <p>Every design output should be independently checked and signed off by a qualified engineer before construction.</p>
+            <a class="btn btn-light btn-block" href="reports.html">Browse Reports</a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/analysis.js?v=v2"></script>
+</body>
+</html>

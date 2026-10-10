@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Industrial steel shed illustration">
+  <defs>
+    <linearGradient id="ibg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1B2E"/>
+      <stop offset="1" stop-color="#143152"/>
+    </linearGradient>
+    <pattern id="igrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#FFFFFF" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="560" fill="url(#ibg)"/>
+  <rect width="800" height="560" fill="url(#igrid)"/>
+  <g fill="none" stroke="#1680F8" stroke-width="4" stroke-linejoin="round">
+    <path d="M120 260L400 140l280 120v240H120z" fill="#0E2440"/>
+    <path d="M120 260h560"/>
+    <path d="M120 500V260M213 500V260M306 500V260M400 500V260M493 500V260M586 500V260M680 500V260" stroke-opacity="0.45"/>
+    <path d="M120 260l80 60 80-60 80 60 80-60 80 60 80-60 80 60" stroke-opacity="0.8"/>
+  </g>
+  <rect x="330" y="380" width="140" height="120" fill="#FFFFFF" opacity="0.85"/>
+  <rect y="500" width="800" height="6" fill="#1680F8" opacity="0.6"/>
+  <text x="40" y="542" fill="#FFFFFF" opacity="0.5" font-family="Segoe UI, Arial, sans-serif" font-size="20" letter-spacing="4">INDUSTRIAL STEEL STRUCTURE</text>
+</svg>

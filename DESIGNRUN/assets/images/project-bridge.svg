@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Bridge structure illustration">
+  <defs>
+    <linearGradient id="bbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1B2E"/>
+      <stop offset="1" stop-color="#143152"/>
+    </linearGradient>
+    <pattern id="bgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#FFFFFF" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="560" fill="url(#bbg)"/>
+  <rect width="800" height="560" fill="url(#bgrid)"/>
+  <g fill="none" stroke="#1680F8" stroke-width="4" stroke-linecap="round">
+    <path d="M120 300h560" stroke-width="10"/>
+    <path d="M240 300V140M560 300V140" stroke-width="8"/>
+    <path d="M120 300c60 120 140 160 280 160s220-40 280-160" stroke-opacity="0.9"/>
+    <path d="M120 300c60-90 140-130 280-130s220 40 280 130" stroke-opacity="0.9"/>
+    <path d="M240 140c60 40 260 40 320 0" stroke-dasharray="10 12" stroke-opacity="0.8"/>
+    <path d="M180 300v70M240 300v120M300 300v148M360 300v158M440 300v158M500 300v148M560 300v120M620 300v70" stroke-opacity="0.5"/>
+  </g>
+  <rect y="460" width="800" height="10" fill="#1680F8" opacity="0.35"/>
+  <rect y="500" width="800" height="6" fill="#1680F8" opacity="0.6"/>
+  <text x="40" y="542" fill="#FFFFFF" opacity="0.5" font-family="Segoe UI, Arial, sans-serif" font-size="20" letter-spacing="4">BRIDGE STRUCTURE</text>
+</svg>

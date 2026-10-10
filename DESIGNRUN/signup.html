@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>/* Apply saved UI theme before first paint (prevents flash). */
+      try { var dr = JSON.parse(localStorage.getItem('dr_settings') || '{}'); if (dr.theme && dr.theme !== 'light') { document.documentElement.setAttribute('data-theme', dr.theme); } } catch (e) {}
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up â€” DESIGNRUN</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=v2">
+  <link rel="stylesheet" href="css/responsive.css?v=v2">
+</head>
+<body data-page="signup" data-title="Sign Up">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="sidebar-root"></div>
+  <div class="content-wrap">
+    <div id="topbar-root"></div>
+    <main id="main-content" class="main-content">
+      <div class="auth-wrap">
+        <aside class="auth-side">
+          <span class="auth-badge"><i data-icon="key" data-size="14"></i> OTP Verification</span>
+          <h2>Join <span>DESIGNRUN</span> in 30 seconds</h2>
+          <p>Create your account, verify the OTP and unlock the Admin Panel.</p>
+          <ul class="auth-points">
+            <li><i data-icon="check-circle" data-size="17"></i> Step 1 â€” name, email &amp; password.</li>
+            <li><i data-icon="message" data-size="17"></i> Step 2 â€” 6-digit OTP verification.</li>
+            <li><i data-icon="crown" data-size="17"></i> First account becomes the administrator automatically.</li>
+          </ul>
+        </aside>
+        <div class="auth-form-col"><div class="auth-card">
+          <span class="auth-badge"><i data-icon="user" data-size="14"></i> Create account</span>
+          <h1>Sign up for DESIGNRUN</h1>
+          <p class="muted">Have an account? <a href="login.html">Log in</a>.</p>
+          <form id="signup-form" novalidate>
+            <div id="signup-step-1">
+              <div class="form-group"><label for="s-name">Full name *</label><input id="s-name" type="text" maxlength="60" autocomplete="name"><span class="field-error" id="err-s-name"></span></div>
+              <div class="form-group"><label for="s-email">Email *</label><input id="s-email" type="email" maxlength="120" autocomplete="email"><span class="field-error" id="err-s-email"></span></div>
+              <div class="form-group"><label for="s-pass">Password (min 6 characters) *</label><input id="s-pass" type="password" maxlength="100" autocomplete="new-password"><span class="field-error" id="err-s-pass"></span></div>
+              <div class="form-actions"><button type="submit" class="btn btn-gold btn-block"><i data-icon="send" data-size="16"></i> Send OTP</button></div>
+            </div>
+            <div id="signup-step-2" hidden>
+              <div class="demo-otp-box"><small class="muted">YOUR OTP (valid for 5 min)</small><div class="demo-otp-code" id="demo-otp-code">------</div><button type="button" class="btn btn-ghost btn-sm" id="resend-otp">Resend OTP</button></div>
+              <div class="form-group" style="margin-top:14px;"><label>Enter 6-digit OTP *</label>
+                <div class="otp-inputs" id="otp-inputs">
+                  <input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 1"><input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 2"><input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 3"><input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 4"><input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 5"><input type="text" inputmode="numeric" maxlength="1" aria-label="OTP 6">
+                </div><span class="field-error" id="err-otp"></span></div>
+              <div class="form-actions"><button type="button" class="btn btn-primary btn-block" id="verify-otp-btn"><i data-icon="check" data-size="16"></i> Verify &amp; Create</button><button type="button" class="btn btn-ghost btn-block" id="back-step-1">Back</button></div>
+            </div>
+          </form>
+          <div class="notice-box notice-warn" style="margin-top:14px;"><i data-icon="alert" data-size="16"></i><p><strong>Important:</strong> the OTP is verified on this device. For SMS/email OTP delivery, connect a backend service such as Firebase Auth.</p></div>
+        </div></div>
+      </div>
+    </main>
+    <div id="footer-root"></div>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="js/storage.js?v=v2"></script>
+  <script src="js/api.js?v=v2"></script>
+  <script src="js/app.js?v=v2"></script>
+  <script src="js/auth.js?v=v2"></script>
+</body>
+</html>
