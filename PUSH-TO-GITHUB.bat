@@ -15,7 +15,7 @@ echo.
 
 set /p GHUSER=Apna GitHub username daalo: 
 if "%GHUSER%"=="" (
-  echo [ERROR] Username khaali nahi ho sakta. Dobara chalao.
+  echo [ERROR] Username tush1019.
   pause & exit /b 1
 )
 
