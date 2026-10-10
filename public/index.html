@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Designrun</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Creative sprint</p>
+          <h1>Designrun</h1>
+        </div>
+        <button id="archiveButton" class="secondary-btn" type="button">Archive done</button>
+      </header>
+
+      <main class="layout">
+        <section class="panel stats-panel">
+          <div class="stat-card">
+            <span>Total work</span>
+            <strong id="totalCount">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>In progress</span>
+            <strong id="inProgressCount">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Ready to do</span>
+            <strong id="todoCount">0</strong>
+          </div>
+          <div class="stat-card high-priority">
+            <span>High priority</span>
+            <strong id="highPriorityCount">0</strong>
+          </div>
+        </section>
+
+        <section class="panel form-panel">
+          <h2>Add a design task</h2>
+          <form id="taskForm">
+            <label>
+              Title
+              <input id="titleInput" name="title" type="text" placeholder="Design onboarding flow" required />
+            </label>
+            <div class="two-column">
+              <label>
+                Assignee
+                <input id="assigneeInput" name="assignee" type="text" placeholder="Jay" />
+              </label>
+              <label>
+                Estimate (hrs)
+                <input id="estimateInput" name="estimateHours" type="number" min="1" max="99" value="4" />
+              </label>
+            </div>
+            <div class="two-column">
+              <label>
+                Priority
+                <select id="priorityInput" name="priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </label>
+              <label>
+                Status
+                <select id="statusInput" name="status">
+                  <option value="todo" selected>To do</option>
+                  <option value="in-progress">In progress</option>
+                  <option value="done">Done</option>
+                </select>
+              </label>
+            </div>
+            <button type="submit">Add task</button>
+          </form>
+        </section>
+
+        <section class="panel board-panel">
+          <div class="board-header">
+            <h2>Worklist</h2>
+            <span id="taskMeta">0 tasks</span>
+          </div>
+          <ul id="taskList" class="task-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
