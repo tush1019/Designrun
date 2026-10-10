@@ -1,11 +1,18 @@
 @echo off
 REM ============================================================
-REM  DESIGNRUN — GitHub push helper
-REM  Double-click karo. Sirf GitHub username + repo naam daalo,
-REM  baaki sab (init/add/commit/push) khud ho jayega.
+REM  DESIGNRUN — GitHub push helper (git auto-find + safe)
+REM  Double-click karo. Username + repo naam daalo, baaki auto.
 REM ============================================================
 setlocal enabledelayedexpansion
 cd /d "%~dp0"
+
+REM --- git dhoondo: PATH me nahi hai toh standard install path se ---
+set GIT=git
+where git >nul 2>nul
+if errorlevel 1 (
+  if exist "C:\Program Files\Git\cmd\git.exe"     set GIT="C:\Program Files\Git\cmd\git.exe"
+  if exist "C:\Program Files (x86)\Git\cmd\git.exe" set GIT="C:\Program Files (x86)\Git\cmd\git.exe"
+)
 
 echo.
 echo ============================================
@@ -13,14 +20,20 @@ echo   DESIGNRUN ko GitHub par push karna hai
 echo ============================================
 echo.
 
-set /p GHUSER=Apna GitHub username daalo: 
+set /p GHUSER=GitHub username daalo ^(jaise tush1019^): 
 if "%GHUSER%"=="" (
-  echo [ERROR] Username tush1019.
+  echo [ERROR] Username khaali nahi ho sakta.
   pause & exit /b 1
 )
 
 set /p REPO=Repo naam daalo ^(default: designrun^): 
 if "%REPO%"=="" set REPO=designrun
+
+echo.
+echo Kya tera repo naya aur KHAALI hai?
+echo   Y  = naya khali repo  (normal push)
+echo   N  = purana DESIGNRUN repo, usme daal ke REPLACE karna hai (force push)
+set /p NEWREPO=Type Y ya N, phir Enter: 
 
 set REMOTE=https://github.com/%GHUSER%/%REPO%.git
 
@@ -31,21 +44,23 @@ echo Remote   : %REMOTE%
 echo.
 
 echo [1/5] git init ...
-git init
-
-echo [2/5] git add .
-git add .
-
+%GIT% init
+echo [2/5] git add ...
+%GIT% add -A
 echo [3/5] git commit ...
-git commit -m "DESIGNRUN ready to deploy"
-
+%GIT% commit -m "DESIGNRUN ready to deploy"
 echo [4/5] branch main ...
-git branch -M main
-
+%GIT% branch -M main
 echo [5/5] push to GitHub ...
-git remote remove origin 2>nul
-git remote add origin %REMOTE%
-git push -u origin main
+%GIT% remote remove origin 2>nul
+%GIT% remote add origin %REMOTE%
+
+if /I "%NEWREPO%"=="N" (
+  echo (Force push — purana content replace ho jayega)
+  %GIT% push -u origin main --force
+) else (
+  %GIT% push -u origin main
+)
 
 echo.
 if %errorlevel%==0 (
@@ -55,9 +70,9 @@ if %errorlevel%==0 (
   echo ============================================
 ) else (
   echo ============================================
-  echo   Push FAILHUA. Upar error dekho.
-  echo   Aksar wajah: username/repo galat, ya
-  echo   GitHub login window nahi khula.
+  echo   Push FAIL HUA. Upar error dekho.
+  echo   Aksar wajah: username/repo galat, login
+  echo   window band kar di, ya internet off.
   echo ============================================
 )
 echo.
