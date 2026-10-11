@@ -73,7 +73,7 @@ button { font-family: inherit; }
   position: absolute; left: -999px; top: 8px; z-index: 2000;
   background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 8px;
 }
-.skip-link:focus { left: 8px; color: #fff; }
+.skip-link:focus { left: 8px; color: #eda0a0; }
 
 .icon-svg { flex: 0 0 auto; }
 
@@ -938,10 +938,15 @@ body {
 
 
 
+
+
+
+
+
 /* ==========================================================================
-   PREMIUM — UI themes (activated via <html data-theme="…">)
+   PREMIUM Ã¹ UI themes (activated via <html data-theme="Ã ">)
    Each theme only overrides the design tokens, so every component that
-   already uses var(--…) recolours automatically.
+   already uses var(--Ã ) recolours automatically.
    ========================================================================== */
 [data-theme="dark"] {
   --bg: #0E1726;
@@ -974,7 +979,7 @@ body {
 [data-theme="dark"] .quick-link { background: #14212F; }
 [data-theme="dark"] .expertise-item { background: #14212F; }
 
-/* Ocean — calm teal */
+/* Ocean Ã¹ calm teal */
 [data-theme="ocean"] {
   --bg: #E7F3F6;
   --card: #FFFFFF;
@@ -995,7 +1000,7 @@ body {
 }
 [data-theme="ocean"] .quick-link { background: #EAF6F9; }
 
-/* Sunset — warm amber / coral */
+/* Sunset Ã¹ warm amber / coral */
 [data-theme="sunset"] {
   --bg: #FCEFE9;
   --card: #FFFFFF;
@@ -1017,7 +1022,7 @@ body {
 }
 [data-theme="sunset"] .quick-link { background: #FBEFE7; }
 
-/* Forest — deep green */
+/* Forest Ã¹ deep green */
 [data-theme="forest"] {
   --bg: #E9F2EC;
   --card: #FFFFFF;
@@ -1039,7 +1044,7 @@ body {
 [data-theme="forest"] .quick-link { background: #EAF4ED; }
 
 /* ==========================================================================
-   PREMIUM — Profile settings modal (tabs, avatar upload, theme picker)
+   PREMIUM Ã¹ Profile settings modal (tabs, avatar upload, theme picker)
    ========================================================================== */
 .pf-tabs { display: flex; gap: 6px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
 .pf-tab {
