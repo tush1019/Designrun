@@ -734,7 +734,7 @@
       closeSidebar();
     });
 
-    document.body.classList.add('js-ready');
+    if (document.body && document.body.classList) document.body.classList.add('js-ready');
   }
 
   if (document.readyState === 'loading') {

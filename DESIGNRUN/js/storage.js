@@ -482,7 +482,8 @@
     return theme;
   };
   DR.applyTheme = function (theme) {
-    var docEl = document.documentElement;
+    var docEl = document && document.documentElement;
+    if (!docEl || typeof docEl.setAttribute !== 'function') return;
     if (theme && theme !== 'light') { docEl.setAttribute('data-theme', theme); }
     else { docEl.removeAttribute('data-theme'); }
   };
