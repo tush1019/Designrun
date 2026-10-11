@@ -229,11 +229,12 @@ app.post('/api/auth/verify', (req, res) => {
   const body = req.body || {};
   const email = String(body.email || '').trim().toLowerCase();
   const otp = String(body.otp || '').trim();
+  const isValidOtp = /^\d{6}$/.test(otp);
 
   const pending = store.getPending(db, email);
   if (!pending) return res.status(404).json({ error: 'Please fill details first.' });
   if (Date.now() > pending.expires_at) return res.status(400).json({ error: 'OTP expired. Please resend.' });
-  if (!crypto.timingSafeEqual(Buffer.from(otp.padEnd(6, '0')), Buffer.from(pending.otp.padEnd(6, '0')))) {
+  if (!isValidOtp || !crypto.timingSafeEqual(Buffer.from(otp), Buffer.from(String(pending.otp).trim()))) {
     return res.status(400).json({ error: 'Incorrect OTP. Please check the code.' });
   }
   if (store.findUser(db, email)) return res.status(409).json({ error: 'An account with this email already exists. Please log in.' });
