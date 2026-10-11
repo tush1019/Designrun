@@ -60,9 +60,33 @@ function signToken(user) {
   return jwt.sign({ email: user.email, role: user.role }, SECRET, { expiresIn: JWT_TTL });
 }
 
+function parseCookies(req) {
+  const out = {};
+  (req.headers.cookie || '').split(';').forEach((pair) => {
+    const i = pair.indexOf('=');
+    if (i < 0) return;
+    const k = pair.slice(0, i).trim();
+    if (k) out[k] = decodeURIComponent(pair.slice(i + 1).trim());
+  });
+  return out;
+}
+
 function readToken(req) {
   const header = req.headers.authorization || '';
-  return header.startsWith('Bearer ') ? header.slice(7) : null;
+  if (header.startsWith('Bearer ')) return header.slice(7);
+  return parseCookies(req).dr_token || null;
+}
+
+/* Auth cookie so the private admin page can be verified on a normal page
+   navigation — the SPA token lives in localStorage and is not sent on full
+   page loads. */
+function setAuthCookie(res, token) {
+  res.cookie('dr_token', token, {
+    httpOnly: true, sameSite: 'lax', maxAge: 30 * 24 * 60 * 60 * 1000, path: '/'
+  });
+}
+function clearAuthCookie(res) {
+  res.clearCookie('dr_token', { path: '/' });
 }
 
 function userFromRequest(req) {
@@ -77,7 +101,7 @@ function userFromRequest(req) {
 }
 
 const app = express();
-app.use(cors({ origin: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 
 /* Attach the current user when a valid token is present (never fatal). */
@@ -212,7 +236,9 @@ app.post('/api/auth/verify', (req, res) => {
   const user = store.createUser(db, { name: pending.name, email, passHash: pending.pass_hash, role });
   store.deletePending(db, email);
 
-  res.json({ ok: true, token: signToken(user), user });
+  const token = signToken(user);
+  setAuthCookie(res, token);
+  res.json({ ok: true, token, user });
 });
 
 app.post('/api/auth/login', (req, res) => {
@@ -225,11 +251,18 @@ app.post('/api/auth/login', (req, res) => {
   if (!bcrypt.compareSync(password, user.pass_hash)) {
     return res.status(401).json({ error: 'Incorrect password. Please try again.' });
   }
-  res.json({ ok: true, token: signToken(user), user: store.publicUser(user) });
+  const token = signToken(user);
+  setAuthCookie(res, token);
+  res.json({ ok: true, token, user: store.publicUser(user) });
 });
 
 app.get('/api/auth/me', requireAuth, (req, res) => {
   res.json({ ok: true, user: store.publicUser(req.user) });
+});
+
+app.post('/api/auth/logout', (req, res) => {
+  clearAuthCookie(res);
+  res.json({ ok: true });
 });
 
 /* =========================== site documents ============================ */
@@ -327,6 +360,16 @@ app.use((err, req, res, next) => {
 /* Serve the DESIGNRUN website itself (so one server = site + API).
    - hashed assets (js/css/images) are cached hard
    - .html is always revalidated (frontend already uses ?v= cache-busters) */
+/* ----- Private admin panel -----
+   admin.html is only served to a signed-in administrator. Everyone else is
+   redirected to the login page, so the panel never renders for the public.
+   (The /api/admin/* data routes are independently protected by requireAdmin.) */
+app.get('/admin.html', (req, res, next) => {
+  const user = userFromRequest(req);
+  if (!user || user.role !== 'admin') return res.redirect('/login.html');
+  next();
+});
+
 app.use(express.static(FRONTEND_DIR, {
   setHeaders(res, filePath) {
     if (/\.(js|css|woff2?|png|jpe?g|gif|svg|webp|ico)$/i.test(filePath)) {

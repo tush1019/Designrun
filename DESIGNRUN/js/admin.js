@@ -159,13 +159,15 @@
     var w = document.getElementById('admin-kpi'); if (!w) return;
     var c = DR.adminCounts();
     var cards = [
-      { n: c.projects, l: 'Projects' },
-      { n: c.enquiries, l: 'Enquiries' },
-      { n: c.team, l: 'Team members' },
-      { n: c.users, l: 'Accounts' }
+      { n: c.projects, l: 'Projects', i: 'folder', a: 'blue' },
+      { n: c.enquiries, l: 'Enquiries', i: 'mail', a: 'gold' },
+      { n: c.team, l: 'Team members', i: 'users', a: 'violet' },
+      { n: c.users, l: 'Accounts', i: 'shield', a: 'green' }
     ];
     w.innerHTML = cards.map(function (k) {
-      return '<div class="card card-pad kpi"><div class="kpi-num">' + k.n + '</div><div class="kpi-label">' + k.l + '</div></div>';
+      return '<div class="card card-pad kpi kpi-' + k.a + '">' +
+        '<span class="kpi-ico">' + DR.icon(k.i, 20) + '</span>' +
+        '<div class="kpi-num">' + k.n + '</div><div class="kpi-label">' + k.l + '</div></div>';
     }).join('');
   };
   function guard() {
@@ -176,8 +178,10 @@
     if (!DR.isDemoAdmin()) {
       body.hidden = true; locked.hidden = false;
       var me = DR.currentDemoUser();
-      locked.innerHTML = '<div class="card card-pad empty-state"><span class="icon-chip icon-chip-lg">' + DR.icon('lock', 24) + '</span>' +
-        '<h2>Administrator access required</h2><p>' + (me ? 'Your account is a member account. Administrator access is required for this page.' : 'Please log in with an administrator account first.') + '</p>' +
+      locked.innerHTML = '<div class="card card-pad empty-state admin-locked">' +
+        '<span class="icon-chip icon-chip-lg admin-lock-ico">' + DR.icon('lock', 26) + '</span>' +
+        '<h2>Restricted area</h2>' +
+        '<p>' + (me ? 'Your account does not have administrator access. This control centre is private to administrators only.' : 'This control centre is private. Please sign in with an administrator account to continue.') + '</p>' +
         '<div class="form-actions" style="justify-content:center;">' +
         (me ? '' : '<a class="btn btn-primary" href="login.html">Log In</a>') +
         '<a class="btn btn-gold" href="signup.html">Create Account</a></div></div>';

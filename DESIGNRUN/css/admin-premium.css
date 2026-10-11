@@ -1,0 +1,220 @@
+/* ==========================================================================
+   DESIGNRUN — admin-premium.css
+   Extreme "command centre" skin for the Admin Panel only.
+   Loaded after style.css and scoped to body[data-page="admin"], so every
+   other page keeps the normal light look. Dark glass surfaces, electric
+   blue + gold accents, glowing KPIs and an elite tab rail.
+   ========================================================================== */
+
+/* ---- Dark canvas ------------------------------------------------------- */
+body[data-page="admin"] {
+  --ad-bg: #060B14;
+  --ad-bg-2: #0A1424;
+  --ad-surface: rgba(255, 255, 255, .045);
+  --ad-surface-2: rgba(255, 255, 255, .07);
+  --ad-border: rgba(255, 255, 255, .10);
+  --ad-border-strong: rgba(255, 255, 255, .18);
+  --ad-text: #EAF1FB;
+  --ad-muted: #93A6C0;
+  --ad-blue: #2E90FF;
+  --ad-blue-2: #0E63D6;
+  --ad-gold: #E7C65A;
+  --ad-gold-2: #C9A227;
+  --ad-violet: #A78BFA;
+  --ad-green: #34D399;
+  --ad-radius: 18px;
+  background:
+    radial-gradient(1200px 520px at 88% -10%, rgba(46, 144, 255, .16), transparent 60%),
+    radial-gradient(900px 480px at 4% 0%, rgba(231, 198, 90, .10), transparent 55%),
+    linear-gradient(180deg, var(--ad-bg) 0%, var(--ad-bg-2) 100%);
+  background-attachment: fixed;
+  color: var(--ad-text);
+}
+body[data-page="admin"] .content-wrap { background: transparent; }
+
+/* Make the shared light chrome read as dark glass on this page only. */
+body[data-page="admin"] .topbar {
+  background: rgba(8, 15, 26, .72);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom: 1px solid var(--ad-border);
+}
+body[data-page="admin"] .topbar-page-title { color: var(--ad-text); }
+body[data-page="admin"] .icon-btn { color: var(--ad-muted); }
+body[data-page="admin"] .icon-btn:hover { background: var(--ad-surface-2); color: #fff; }
+body[data-page="admin"] .search-box input {
+  background: var(--ad-surface); border-color: var(--ad-border); color: var(--ad-text);
+}
+body[data-page="admin"] .search-box input::placeholder { color: var(--ad-muted); }
+body[data-page="admin"] .search-icon { color: var(--ad-muted); }
+body[data-page="admin"] .avatar-btn {
+  background: var(--ad-surface); border-color: var(--ad-border); color: var(--ad-text);
+}
+body[data-page="admin"] .dropdown-menu,
+body[data-page="admin"] .dropdown-notif {
+  background: #0C1626; border-color: var(--ad-border); box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+body[data-page="admin"] .dropdown-menu .menu-item { color: var(--ad-text); }
+body[data-page="admin"] .dropdown-menu .menu-item:hover { background: var(--ad-surface-2); }
+body[data-page="admin"] .dropdown-head { border-color: var(--ad-border); }
+body[data-page="admin"] .menu-divider { background: var(--ad-border); }
+body[data-page="admin"] .search-results {
+  background: #0C1626; border-color: var(--ad-border);
+}
+
+/* ---- Page head + admin badge ------------------------------------------ */
+body[data-page="admin"] .page-title {
+  background: linear-gradient(100deg, #fff 10%, var(--ad-gold) 60%, #fff 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -.5px;
+}
+body[data-page="admin"] .page-sub { color: var(--ad-muted); }
+body[data-page="admin"] .auth-badge {
+  color: #1B1402;
+  background: linear-gradient(135deg, var(--ad-gold), var(--ad-gold-2));
+  border: 1px solid rgba(231, 198, 90, .6);
+  box-shadow: 0 6px 18px rgba(231, 198, 90, .28);
+}
+
+/* ---- Surfaces ---------------------------------------------------------- */
+body[data-page="admin"] .card {
+  background: var(--ad-surface);
+  border: 1px solid var(--ad-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  backdrop-filter: blur(8px);
+  color: var(--ad-text);
+}
+body[data-page="admin"] .card-pad { padding: 22px 24px; }
+
+/* ---- KPI cards --------------------------------------------------------- */
+body[data-page="admin"] .admin-kpi { gap: 16px; margin-bottom: 22px; }
+body[data-page="admin"] .kpi {
+  position: relative; overflow: hidden; border-radius: var(--ad-radius);
+  padding: 20px 22px 18px; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+body[data-page="admin"] .kpi::after {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: linear-gradient(90deg, var(--kpi-c, #2E90FF), transparent 85%);
+}
+body[data-page="admin"] .kpi:hover {
+  transform: translateY(-4px); border-color: var(--ad-border-strong);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .5);
+}
+body[data-page="admin"] .kpi-ico {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px; border-radius: 12px; margin-bottom: 12px;
+  color: var(--kpi-c, #2E90FF);
+  background: color-mix(in srgb, var(--kpi-c, #2E90FF) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--kpi-c, #2E90FF) 38%, transparent);
+}
+body[data-page="admin"] .kpi-num {
+  font-size: 34px; line-height: 1; font-weight: 800; letter-spacing: -1px;
+  color: #fff; text-shadow: 0 0 26px color-mix(in srgb, var(--kpi-c, #2E90FF) 45%, transparent);
+}
+body[data-page="admin"] .kpi-label { color: var(--ad-muted); margin-top: 6px; letter-spacing: .3px; }
+body[data-page="admin"] .kpi-blue   { --kpi-c: #2E90FF; }
+body[data-page="admin"] .kpi-gold   { --kpi-c: #E7C65A; }
+body[data-page="admin"] .kpi-violet { --kpi-c: #A78BFA; }
+body[data-page="admin"] .kpi-green  { --kpi-c: #34D399; }
+
+/* ---- Tab rail ---------------------------------------------------------- */
+body[data-page="admin"] .admin-grid { grid-template-columns: 248px minmax(0, 1fr); gap: 20px; }
+body[data-page="admin"] .admin-tabs {
+  background: var(--ad-surface); border: 1px solid var(--ad-border);
+  border-radius: var(--ad-radius); padding: 12px; gap: 6px; top: 92px;
+  backdrop-filter: blur(8px);
+}
+body[data-page="admin"] .admin-tab {
+  background: transparent; border: 1px solid transparent; color: var(--ad-muted);
+  border-radius: 12px; padding: 12px 14px; font-weight: 600; letter-spacing: .2px;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+body[data-page="admin"] .admin-tab .icon-svg { color: var(--ad-muted); transition: color .18s ease; }
+body[data-page="admin"] .admin-tab:hover { background: var(--ad-surface-2); color: #fff; transform: translateX(2px); }
+body[data-page="admin"] .admin-tab:hover .icon-svg { color: #fff; }
+body[data-page="admin"] .admin-tab.active {
+  color: #fff;
+  background: linear-gradient(90deg, color-mix(in srgb, #2E90FF 26%, transparent), color-mix(in srgb, #E7C65A 16%, transparent));
+  border-color: color-mix(in srgb, #E7C65A 50%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04), 0 8px 22px rgba(0, 0, 0, .35);
+}
+body[data-page="admin"] .admin-tab.active .icon-svg { color: var(--ad-gold); }
+
+/* ---- Pane + content ---------------------------------------------------- */
+body[data-page="admin"] .admin-pane { color: var(--ad-text); }
+body[data-page="admin"] .admin-pane h2 {
+  color: #fff; font-size: 19px; letter-spacing: -.2px; margin: 0 0 4px;
+}
+body[data-page="admin"] .admin-pane .muted,
+body[data-page="admin"] .muted { color: var(--ad-muted); }
+
+/* ---- Rows (projects / enquiries / users) ------------------------------- */
+body[data-page="admin"] .user-row {
+  border-color: var(--ad-border); border-radius: 12px; padding: 12px 10px;
+  transition: background .18s ease;
+}
+body[data-page="admin"] .user-row:hover { background: var(--ad-surface); }
+body[data-page="admin"] .user-row strong { color: #fff; }
+body[data-page="admin"] .icon-chip {
+  background: var(--ad-surface-2); color: var(--ad-blue);
+  border: 1px solid var(--ad-border);
+}
+
+/* ---- Role badges ------------------------------------------------------- */
+body[data-page="admin"] .role-admin {
+  background: linear-gradient(135deg, var(--ad-gold), var(--ad-gold-2)); color: #1B1402;
+  box-shadow: 0 4px 14px rgba(231, 198, 90, .3);
+}
+body[data-page="admin"] .role-user {
+  background: color-mix(in srgb, #2E90FF 18%, transparent); color: #9CC9FF;
+  border: 1px solid color-mix(in srgb, #2E90FF 40%, transparent);
+}
+
+/* ---- Buttons on this page ---------------------------------------------- */
+body[data-page="admin"] .btn-ghost { color: var(--ad-muted); }
+body[data-page="admin"] .btn-ghost:hover { background: var(--ad-surface-2); color: #fff; }
+body[data-page="admin"] .btn-gold {
+  background: linear-gradient(135deg, var(--ad-gold), var(--ad-gold-2)); color: #1B1402;
+  border-color: rgba(231, 198, 90, .5); box-shadow: 0 8px 20px rgba(231, 198, 90, .28);
+}
+
+/* ---- Forms (Stats control) --------------------------------------------- */
+body[data-page="admin"] .form-group label { color: var(--ad-text); }
+body[data-page="admin"] .form-group input {
+  background: var(--ad-surface); border-color: var(--ad-border); color: #fff;
+}
+body[data-page="admin"] .form-group input:focus {
+  background: var(--ad-surface-2); border-color: var(--ad-blue);
+  box-shadow: 0 0 0 3px rgba(46, 144, 255, .22);
+}
+
+/* ---- Locked / restricted screen ---------------------------------------- */
+body[data-page="admin"] .admin-locked { max-width: 520px; margin: 40px auto; text-align: center; }
+body[data-page="admin"] .admin-locked h2 { color: #fff; }
+body[data-page="admin"] .admin-locked p { color: var(--ad-muted); }
+body[data-page="admin"] .admin-lock-ico {
+  width: 68px; height: 68px; border-radius: 20px; margin: 0 auto 16px;
+  color: var(--ad-gold);
+  background: color-mix(in srgb, #E7C65A 14%, transparent);
+  border: 1px solid color-mix(in srgb, #E7C65A 40%, transparent);
+  box-shadow: 0 0 34px rgba(231, 198, 90, .22);
+}
+
+/* ---- Footer on this page ----------------------------------------------- */
+body[data-page="admin"] .site-footer {
+  background: linear-gradient(180deg, #08111F, #060B14);
+  border: 1px solid var(--ad-border); color: var(--ad-muted);
+}
+body[data-page="admin"] .site-footer a { color: var(--ad-muted); }
+body[data-page="admin"] .site-footer a:hover { color: var(--ad-gold); }
+
+/* ---- Fallback if color-mix is unsupported ------------------------------ */
+@supports not (background: color-mix(in srgb, red 10%, blue)) {
+  body[data-page="admin"] .kpi-ico { background: rgba(46, 144, 255, .16); border-color: rgba(46, 144, 255, .38); }
+  body[data-page="admin"] .role-user { background: rgba(46, 144, 255, .18); color: #9CC9FF; }
+  body[data-page="admin"] .admin-lock-ico { background: rgba(231, 198, 90, .14); border-color: rgba(231, 198, 90, .4); }
+  body[data-page="admin"] .admin-tab.active {
+    background: linear-gradient(90deg, rgba(46, 144, 255, .26), rgba(231, 198, 90, .16));
+    border-color: rgba(231, 198, 90, .5);
+  }
+}
+

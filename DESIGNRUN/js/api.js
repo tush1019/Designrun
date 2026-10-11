@@ -70,6 +70,7 @@
       return fetch(base + '/api' + path, {
         method: method,
         headers: headers,
+        credentials: 'include',
         body: body === undefined || body === null ? undefined : JSON.stringify(body)
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
@@ -248,10 +249,16 @@
     }
   };
 
-  /* Logging out also clears the API token. */
+  /* Logging out also clears the API token + server auth cookie. */
+  DR.api.logout = function () {
+    return DR.api.request('POST', '/auth/logout', {}).catch(warn);
+  };
   var origSetSession = DR.setSession;
   DR.setSession = function (email, user) {
-    if (!email) DR.api.setToken(null);
+    if (!email) {
+      DR.api.setToken(null);
+      DR.api.logout();
+    }
     return origSetSession(email, user);
   };
 
