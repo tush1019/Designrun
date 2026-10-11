@@ -239,6 +239,12 @@
     return ok;
   };
 
+  /* Administrator creates a new account directly (public signup is closed). */
+  DR.api.createUser = function (name, email, password, role) {
+    return DR.api.request('POST', '/admin/users', { name: name, email: email, password: password, role: role })
+      .then(function (r) { if (r && r.users) DR.store.set(K.demoUsers, r.users); return r; });
+  };
+
   var origReset = DR.resetDemoData;
   DR.resetDemoData = function () {
     var wasAdmin = DR.isDemoAdmin();

@@ -126,7 +126,15 @@
     var list = DR.getDemoUsers();
     var me = DR.currentDemoUser();
     p.innerHTML = '<h2>Users (' + list.length + ')</h2>' +
-      '<p class="muted">Registered accounts. The first registered account is the administrator.</p>' +
+      '<p class="muted">Public sign-up is closed. Create accounts here — the first account is the administrator.</p>' +
+      '<form id="admin-add-user" class="admin-adduser" novalidate>' +
+        '<div class="form-group"><label for="au-name">Full name *</label><input id="au-name" type="text" maxlength="60" autocomplete="off"><span class="field-error" id="err-au-name"></span></div>' +
+        '<div class="form-group"><label for="au-email">Email *</label><input id="au-email" type="email" maxlength="120" autocomplete="off"><span class="field-error" id="err-au-email"></span></div>' +
+        '<div class="form-group"><label for="au-pass">Password (min 6) *</label><input id="au-pass" type="text" maxlength="100" autocomplete="off"><span class="field-error" id="err-au-pass"></span></div>' +
+        '<div class="form-group"><label for="au-role">Role</label><select id="au-role"><option value="user">User</option><option value="admin">Administrator</option></select></div>' +
+        '<div class="form-actions"><button type="submit" class="btn btn-gold"><i data-icon="user-plus" data-size="16"></i> Add user</button></div>' +
+      '</form>' +
+      '<div class="admin-userlist">' +
       (list.length ? list.map(function (u) {
         var isMe = me && me.email === u.email;
         return '<div class="user-row"><img class="avatar avatar-sm" alt="" src="' + DR.initialsAvatar(u.name, 212) + '">' +
@@ -137,7 +145,9 @@
             ? '<button class="btn btn-ghost btn-sm" data-mk="' + DR.esc(u.email) + '">Make admin</button>' +
               '<button class="btn btn-ghost btn-sm" data-rm="' + DR.esc(u.email) + '">Remove</button>'
             : '') + '</div>';
-      }).join('') : '<div class="empty-state">No users yet. <a href="signup.html">Create the first account</a>.</div>');
+      }).join('') : '<div class="empty-state">No users yet. Add the first account above.</div>') +
+      '</div>';
+    DR.renderIcons(p);
     Array.prototype.forEach.call(p.querySelectorAll('[data-mk]'), function (b) {
       b.addEventListener('click', function () {
         var all = DR.getDemoUsers();
@@ -152,6 +162,33 @@
           DR.saveDemoUsers(DR.getDemoUsers().filter(function (u) { return u.email !== b.getAttribute('data-rm'); }));
           DR.adminKpi(); DR.renderAdminPane('users'); DR.toast('User removed.', 'success');
         });
+      });
+    });
+    wireAddUser();
+  }
+  function wireAddUser() {
+    var f = document.getElementById('admin-add-user');
+    if (!f) return;
+    function err(id, msg) { var e = document.getElementById(id); if (e) e.textContent = msg || ''; }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nm = document.getElementById('au-name').value.trim();
+      var em = document.getElementById('au-email').value.trim().toLowerCase();
+      var pw = document.getElementById('au-pass').value;
+      var role = document.getElementById('au-role').value;
+      var ok = true;
+      if (nm.length < 2) { err('err-au-name', 'Enter a name.'); ok = false; } else err('err-au-name', '');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { err('err-au-email', 'Enter a valid email.'); ok = false; } else err('err-au-email', '');
+      if (pw.length < 6) { err('err-au-pass', 'Min 6 characters.'); ok = false; } else err('err-au-pass', '');
+      if (!ok) return;
+      var btn = f.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      DR.api.createUser(nm, em, pw, role).then(function () {
+        DR.toast('Account created for ' + nm + '.', 'success');
+        DR.adminKpi(); DR.renderAdminPane('users');
+      }).catch(function (e2) {
+        DR.toast((e2 && e2.message) || 'Could not create the account.', 'error');
+        if (btn) btn.disabled = false;
       });
     });
   }
@@ -184,7 +221,7 @@
         '<p>' + (me ? 'Your account does not have administrator access. This control centre is private to administrators only.' : 'This control centre is private. Please sign in with an administrator account to continue.') + '</p>' +
         '<div class="form-actions" style="justify-content:center;">' +
         (me ? '' : '<a class="btn btn-primary" href="login.html">Log In</a>') +
-        '<a class="btn btn-gold" href="signup.html">Create Account</a></div></div>';
+        '<a class="btn btn-ghost" href="index.html">Back to Dashboard</a></div></div>';
       DR.renderIcons(locked);
       if (badge) badge.innerHTML = 'Locked';
       return;

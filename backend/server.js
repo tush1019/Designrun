@@ -169,7 +169,13 @@ app.post('/api/bootstrap', (req, res) => {
 });
 
 /* ============================== auth ================================== */
+/* Public sign-up is closed once the first administrator exists — the very
+   first account (empty database) bootstraps the admin, after that only an
+   administrator can create accounts (POST /api/admin/users below). */
 app.post('/api/auth/signup', (req, res) => {
+  if (store.listUsers(db).length > 0) {
+    return res.status(403).json({ error: 'Registration is closed. Please contact the administrator for an account.' });
+  }
   const body = req.body || {};
   const name = String(body.name || '').trim();
   const email = String(body.email || '').trim().toLowerCase();
@@ -336,11 +342,31 @@ app.put('/api/admin/users', requireAdmin, (req, res) => {
   res.json({ ok: true, users: store.listUsersPublic(db) });
 });
 
+/* Administrator creates a new account directly (no OTP step). */
+app.post('/api/admin/users', requireAdmin, (req, res) => {
+  const body = req.body || {};
+  const name = String(body.name || '').trim();
+  const email = String(body.email || '').trim().toLowerCase();
+  const password = String(body.password || '');
+  const role = body.role === 'admin' ? 'admin' : 'user';
+
+  if (name.length < 2) return res.status(400).json({ error: 'Enter a name (min 2 characters).' });
+  if (!EMAIL_RE.test(email)) return res.status(400).json({ error: 'Enter a valid email.' });
+  if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters.' });
+  if (store.findUser(db, email)) return res.status(409).json({ error: 'An account with this email already exists.' });
+
+  const passHash = bcrypt.hashSync(password, 10);
+  store.createUser(db, { name, email, passHash, role });
+  res.json({ ok: true, users: store.listUsersPublic(db) });
+});
+
 app.post('/api/admin/reset', requireAdmin, (req, res) => {
   store.clearDocs(db);
   store.clearSubmissions(db);
-  db.prepare('DELETE FROM users').run();
   db.prepare('DELETE FROM pending_signups').run();
+  /* Keep the acting administrator so the site never becomes ownerless and
+     public sign-up cannot reopen after a reset. */
+  db.prepare('DELETE FROM users WHERE email <> ?').run(req.user.email);
   res.json({ ok: true, sync: syncPayload(req) });
 });
 
@@ -367,6 +393,14 @@ app.use((err, req, res, next) => {
 app.get('/admin.html', (req, res, next) => {
   const user = userFromRequest(req);
   if (!user || user.role !== 'admin') return res.redirect('/login.html');
+  next();
+});
+
+/* signup.html is only reachable while the database has no accounts yet (the
+   very first administrator bootstraps it). Once any account exists, public
+   registration is closed and the page redirects to login. */
+app.get('/signup.html', (req, res, next) => {
+  if (store.listUsers(db).length > 0) return res.redirect('/login.html');
   next();
 });
 

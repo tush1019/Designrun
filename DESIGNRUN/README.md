@@ -81,15 +81,18 @@ DESIGNRUN/
   search + type/category filters.
 - **Contact:** full validation, success/error feedback, ?subject= pre-fill,
   editable business info panel.
-- **Login / Sign-up / OTP:** `login.html` + `signup.html` — accounts live on
-  the backend (bcrypt-hashed passwords; the first registered account
-  automatically becomes administrator). Signup verifies a 6-digit OTP issued
-  by the API. The topbar avatar menu and sidebar profile update
-  automatically (Log in / Log out states).
-- **Admin Panel (control centre):** `admin.html`, administrator only —
+- **Login (private access):** `login.html` — accounts live on the backend
+  (bcrypt-hashed passwords). **Public sign-up is closed**: the very first
+  account bootstraps the administrator (via `signup.html`, only while the
+  database is empty); after that, only an administrator can create accounts
+  from the Admin Panel → Users → "Add user". The topbar avatar menu and
+  sidebar profile update automatically (Log in / Log out states).
+- **Admin Panel (control centre):** `admin.html`, **server-guarded** —
+  non-admins are redirected to the login page and the panel never renders.
   Overview KPIs, Projects manager (view / cycle status / delete), Enquiries
   inbox (contact + consultation + analysis requests), Stats Control (edit
-  the 4 homepage numbers live), Users manager (promote to admin / remove),
+  the 4 homepage numbers live), Users manager (create accounts, promote to
+  admin / remove).
   and a one-click data reset. The Admin link appears in the sidebar + footer
   only for administrators; everyone else sees a locked page.
 - **Premium look:** navy + engineering-blue + gold theme, glass topbar, hero

@@ -97,10 +97,16 @@ async function main() {
     check('GET /auth/me identifies the user', r.status === 200 && r.data.user.email === 'admin@demo.test', r.data);
 
     r = await req('POST', '/auth/signup', { name: 'Member Two', email: 'user@demo.test', password: 'secret12' });
-    const userOtp = r.data.otp;
-    r = await req('POST', '/auth/verify', { email: 'user@demo.test', otp: userOtp });
-    check('second account is a regular user', r.status === 200 && r.data.user.role === 'user', r.data);
+    check('public signup is closed after the first admin', r.status === 403, r);
+
+    r = await req('POST', '/admin/users', { name: 'Member Two', email: 'user@demo.test', password: 'secret12', role: 'user' }, adminToken);
+    check('admin can create a regular user', r.status === 200 && r.data.users.some((u) => u.email === 'user@demo.test' && u.role === 'user'), r.data);
+    const created = r.data.users.find((u) => u.email === 'user@demo.test');
+
+    r = await req('POST', '/auth/login', { email: 'user@demo.test', password: 'secret12' });
+    check('created user can log in', r.status === 200 && !!r.data.token, r.status);
     const userToken = r.data.token;
+    check('created user is a regular user', created && created.role === 'user', created);
 
 
     console.log('\n- content -');
@@ -131,8 +137,10 @@ async function main() {
     check('anonymous cannot reset', r.status === 401, r.status);
     r = await req('POST', '/admin/reset', {}, adminToken);
     check('admin can reset the site', r.status === 200, r.data);
-    r = await req('GET', '/sync');
-    check('reset leaves an empty database', r.data.empty === true, r.data.empty);
+    r = await req('GET', '/sync', undefined, adminToken);
+    check('reset keeps the acting admin but clears content', r.data.empty === false && r.data.users.length === 1 && r.data.users[0].email === 'admin@demo.test', r.data);
+    r = await req('POST', '/auth/signup', { name: 'Sneaky', email: 'sneaky@demo.test', password: 'secret12' });
+    check('signup stays closed after a reset (no admin hijack)', r.status === 403, r);
 
     console.log('\n- static frontend -');
     const page = await fetch(BASE + '/index.html');

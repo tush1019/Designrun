@@ -69,7 +69,8 @@
     lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
     key: '<circle cx="8" cy="15" r="4"/><path d="m11 12 10-10"/><path d="m15 8 3 3"/>',
     crown: '<path d="m3 8 4 4 5-6 5 6 4-4v9H3z"/><path d="M5 21h14"/>',
-    login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>'
+    login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
+    'user-plus': '<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="M19 8v6M22 11h-6"/>'
   };
 
   /* Return an <svg> string for an icon name. */
@@ -290,7 +291,6 @@
                   '<div class="menu-divider"></div>' +
                   '<button type="button" class="menu-item" role="menuitem" data-action="logout">' + DR.icon('logout', 17) + ' Log out</button>'
                 : '<a class="menu-item" role="menuitem" href="login.html">' + DR.icon('login', 17) + ' Log in</a>' +
-                  '<a class="menu-item" role="menuitem" href="signup.html">' + DR.icon('user', 17) + ' Sign up</a>' +
                   '<div class="menu-divider"></div>' +
                   '<button type="button" class="menu-item" role="menuitem" data-action="edit-profile">' + DR.icon('user', 17) + ' Profile settings</button>') +
               '<a class="menu-item" role="menuitem" href="contact.html">' + DR.icon('mail', 17) + ' Business contact info</a>' +
@@ -341,7 +341,7 @@
             '<a href="services.html">Services</a><a href="analysis.html">Design &amp; Analysis</a>' +
             '<a href="reports.html">Reports</a><a href="team.html">Team</a>' +
             '<a href="resources.html">Resources</a><a href="contact.html">Contact Us</a>' +
-            '<a href="login.html">Log in</a><a href="signup.html">Sign up</a>' +
+            '<a href="login.html">Log in</a>' +
             (topMe && topMe.role === 'admin' ? '<a href="admin.html">Admin Panel</a>' : '') +
           '</div>' +
           '<div class="footer-col">' +
